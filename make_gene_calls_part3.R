@@ -146,25 +146,25 @@ dat.t <- cbind(dat.call, dat.score)
 library(ggplot2)
 theme_white <- function() {
 
- theme_update (
- plot.background = theme_blank(),
- panel.background=theme_rect(colour="black", size=1),
- axis.text.x= theme_text(colour="black",vjust= 1, size=12),
- axis.text.y= theme_text(colour="black",hjust=1, size=12),
- axis.title.x =theme_text(colour="black",face="bold", size=12),
- axis.title.y =theme_text(colour="black",face="bold", angle = 90, size=12)
- )
+    theme_update (
+            plot.background = theme_blank(),
+            panel.background=theme_rect(colour="black", size=1),
+            axis.text.x= theme_text(colour="black",vjust= 1, size=12),
+            axis.text.y= theme_text(colour="black",hjust=1, size=12),
+            axis.title.x =theme_text(colour="black",face="bold", size=12),
+            axis.title.y =theme_text(colour="black",face="bold", angle = 90, size=12)
+            )
 }
 theme_white()
 
 ###  log10 scale
 m <- ggplot(dat, aes(x=value, fill=type))
 m + geom_bar() + 
-	opts(axis.text.x = theme_text(angle=90), title = "Calls & Score\n 27K: 279 samp X 9453 (x2) =  5,274,774\n 450K: 74 samp X 11040 (x2) = 1,633,920") + 
-	#scale_y_continuous("Raw Counts", formatter = "comma") + 
-	scale_y_log10("Raw Counts - log10") + 
-	scale_x_discrete("Call or Score", limits=c("UT","ML","MG","ES","MT","UC","0","1","2","3","4")) +
-	facet_grid(type ~ platform)
+opts(axis.text.x = theme_text(angle=90), title = "Calls & Score\n 27K: 279 samp X 9453 (x2) =  5,274,774\n 450K: 74 samp X 11040 (x2) = 1,633,920") + 
+#scale_y_continuous("Raw Counts", formatter = "comma") + 
+scale_y_log10("Raw Counts - log10") + 
+scale_x_discrete("Call or Score", limits=c("UT","ML","MG","ES","MT","UC","0","1","2","3","4")) +
+facet_grid(type ~ platform)
 #ggsave(file="summary_plot_1.pdf") ## raw counts with comma separator
 ggsave(file="summary_plot_2.pdf") ## raw counts on a log10 scale
 
@@ -172,31 +172,31 @@ ggsave(file="summary_plot_2.pdf") ## raw counts on a log10 scale
 ## raw scale with comma separator
 m <- ggplot(dat, aes(x=value, fill=type))
 m + geom_bar() + 
-	opts(axis.text.x = theme_text(angle=90), title = "Calls & Score\n 27K: 279 samp X 9453 (x2) =  5,274,774\n 450K: 74 samp X 11040 (x2) = 1,633,920") + 
-	scale_y_continuous("Raw Counts", formatter = "comma") + 
-	#scale_y_log10("Raw Counts - log10") + 
-	scale_x_discrete("Call or Score", limits=c("UT","ML","MG","ES","MT","UC","0","1","2","3","4")) +
-	facet_grid(type ~ platform)
+opts(axis.text.x = theme_text(angle=90), title = "Calls & Score\n 27K: 279 samp X 9453 (x2) =  5,274,774\n 450K: 74 samp X 11040 (x2) = 1,633,920") + 
+scale_y_continuous("Raw Counts", formatter = "comma") + 
+#scale_y_log10("Raw Counts - log10") + 
+scale_x_discrete("Call or Score", limits=c("UT","ML","MG","ES","MT","UC","0","1","2","3","4")) +
+facet_grid(type ~ platform)
 ggsave(file="summary_plot_1.pdf") ## raw counts with comma separator
 #ggsave(file="summary_plot_2.pdf") ## raw counts on a log10 scale
 
 
- dat.t0 <- subset(dat.t, value.score=="0"); dat.t0$value.score <- c("Se.0")
- dat.t1 <- subset(dat.t, value.score=="1"); dat.t1$value.score <- c("Sd.1")
- dat.t2 <- subset(dat.t, value.score=="2"); dat.t2$value.score <- c("Sc.2")
- dat.t3 <- subset(dat.t, value.score=="3"); dat.t3$value.score <- c("Sb.3")
- dat.t4 <- subset(dat.t, value.score=="4"); dat.t4$value.score <- c("Sa.4")
+dat.t0 <- subset(dat.t, value.score=="0"); dat.t0$value.score <- c("Se.0")
+dat.t1 <- subset(dat.t, value.score=="1"); dat.t1$value.score <- c("Sd.1")
+dat.t2 <- subset(dat.t, value.score=="2"); dat.t2$value.score <- c("Sc.2")
+dat.t3 <- subset(dat.t, value.score=="3"); dat.t3$value.score <- c("Sb.3")
+dat.t4 <- subset(dat.t, value.score=="4"); dat.t4$value.score <- c("Sa.4")
 dat.t.new <- rbind(dat.t0,dat.t1,dat.t2,dat.t3,dat.t4)
 
 ## stacked bar chart # raw count
 m <- ggplot(dat.t.new, aes(x=value.call, fill=value.score))
 m + geom_bar() + 
-	opts(axis.text.x = theme_text(angle=90), title = "Calls & Score\n 27K: 279 samp X 9453 (x2) =  5,274,774\n 450K: 74 samp X 11040 (x2) = 1,633,920") + 
-	scale_y_continuous("Raw Counts", formatter = "comma") + 
-	#scale_y_log10("Raw Counts - log10") + 
-	scale_x_discrete("Call", limits=c("UT","ML","MG","ES","MT","UC")) +
-	scale_fill_manual(values=c("Sa.4" = "Black", "Sb.3" = "gray25","Sc.2" = "#808080", "Sd.1" = "gray75","Se.0" = "#d3d3d3"), breaks = c("Se.0", "Sd.1", "Sc.2", "Sb.3", "Sa.4"), labels = c("0", "1", "2", "3", "4")) + 
-	facet_grid(~ platform.call)
+opts(axis.text.x = theme_text(angle=90), title = "Calls & Score\n 27K: 279 samp X 9453 (x2) =  5,274,774\n 450K: 74 samp X 11040 (x2) = 1,633,920") + 
+scale_y_continuous("Raw Counts", formatter = "comma") + 
+#scale_y_log10("Raw Counts - log10") + 
+scale_x_discrete("Call", limits=c("UT","ML","MG","ES","MT","UC")) +
+scale_fill_manual(values=c("Sa.4" = "Black", "Sb.3" = "gray25","Sc.2" = "#808080", "Sd.1" = "gray75","Se.0" = "#d3d3d3"), breaks = c("Se.0", "Sd.1", "Sc.2", "Sb.3", "Sa.4"), labels = c("0", "1", "2", "3", "4")) + 
+facet_grid(~ platform.call)
 ggsave(file="summary_plot_3.pdf") ## raw counts with comma separator
 #ggsave(file="summary_plot_4.pdf") ## raw counts on a log10 scale
 
@@ -205,12 +205,12 @@ ggsave(file="summary_plot_3.pdf") ## raw counts with comma separator
 ## stacked bar chart # raw count
 m <- ggplot(dat.t.new, aes(x=value.call, fill=value.score))
 m + geom_bar(position="fill") + 
-	opts(axis.text.x = theme_text(angle=90), title = "Calls & Score\n 27K: 279 samp X 9453 (x2) =  5,274,774\n 450K: 74 samp X 11040 (x2) = 1,633,920") + 
-	scale_y_continuous("Percent Total") + 
-	#scale_y_log10("Raw Counts - log10") + 
-	scale_x_discrete("Call", limits=c("UT","ML","MG","ES","MT","UC")) +
-	scale_fill_manual(values=c("Sa.4" = "Black", "Sb.3" = "gray25","Sc.2" = "#808080", "Sd.1" = "gray75","Se.0" = "#d3d3d3"), breaks = c("Se.0", "Sd.1", "Sc.2", "Sb.3", "Sa.4"), labels = c("0", "1", "2", "3", "4")) + 
-	facet_grid(~ platform.call)
+opts(axis.text.x = theme_text(angle=90), title = "Calls & Score\n 27K: 279 samp X 9453 (x2) =  5,274,774\n 450K: 74 samp X 11040 (x2) = 1,633,920") + 
+scale_y_continuous("Percent Total") + 
+#scale_y_log10("Raw Counts - log10") + 
+scale_x_discrete("Call", limits=c("UT","ML","MG","ES","MT","UC")) +
+scale_fill_manual(values=c("Sa.4" = "Black", "Sb.3" = "gray25","Sc.2" = "#808080", "Sd.1" = "gray75","Se.0" = "#d3d3d3"), breaks = c("Se.0", "Sd.1", "Sc.2", "Sb.3", "Sa.4"), labels = c("0", "1", "2", "3", "4")) + 
+facet_grid(~ platform.call)
 #ggsave(file="summary_plot_3.pdf") ## raw counts with comma separator
 ggsave(file="summary_plot_4.pdf") ## percent total
 
@@ -220,12 +220,12 @@ ggsave(file="summary_plot_4.pdf") ## percent total
 ## stacked bar chart # raw count
 m <- ggplot(genedata.m, aes(x=factor(variable),value))
 m + geom_boxplot() + 
-	opts(axis.text.x = theme_text(angle=90), title = "Calls & Score\n 27K: 279 samp X 9453 (x2) =  5,274,774\n 450K: 74 samp X 11040 (x2) = 1,633,920") + 
-	scale_y_continuous("Raw Counts", formatter = "comma") + 
-	#scale_y_log10("Raw Counts - log10") + 
-	scale_x_discrete("Call", limits=c("UT","ML","MG","ES","MT","UC")) +
-	scale_fill_manual(values=c("4" = "Black", "3" = "gray25","2" = "#808080", "1" = "gray75","0" = "#d3d3d3"), breaks = c("0", "1", "2", "3", "4")) + 
-	facet_grid(~ platform.call)
+opts(axis.text.x = theme_text(angle=90), title = "Calls & Score\n 27K: 279 samp X 9453 (x2) =  5,274,774\n 450K: 74 samp X 11040 (x2) = 1,633,920") + 
+scale_y_continuous("Raw Counts", formatter = "comma") + 
+#scale_y_log10("Raw Counts - log10") + 
+scale_x_discrete("Call", limits=c("UT","ML","MG","ES","MT","UC")) +
+scale_fill_manual(values=c("4" = "Black", "3" = "gray25","2" = "#808080", "1" = "gray75","0" = "#d3d3d3"), breaks = c("0", "1", "2", "3", "4")) + 
+facet_grid(~ platform.call)
 ggsave(file="summary_plot_3.pdf") ## raw counts with comma separator
 #ggsave(file="summary_plot_4.pdf") ## raw counts on a log10 scale
 

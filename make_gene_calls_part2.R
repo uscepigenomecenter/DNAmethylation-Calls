@@ -3,7 +3,7 @@
 ## houtana@gmail.com
 ## 310.570.2362
 ## date: Jan 12, 2012
- ## make patient centric calls for each cgProbe that matches the available gene expression by platform (27k, 450k)
+## make patient centric calls for each cgProbe that matches the available gene expression by platform (27k, 450k)
 ## only need rules and dnamethylation data in probe x sample format, takes less than 1 min to run >350 samples, with over 200,000 probes.
 
 ## to run, just source this file. source(file="make_gene_calls_part2.R")
@@ -40,23 +40,23 @@ tmp.ge.25.le.75.27 <- tmp.27 == 2
 for(samp in 1:dim(patient.call.27k)[2]){
 
 ## convert NAs to FALSE
-	tmp.lt.25.27[is.na(tmp.lt.25.27[,samp]),samp] <- FALSE
-	tmp.gt.75.27[is.na(tmp.gt.75.27[,samp]),samp] <- FALSE
-	tmp.ge.25.le.75.27[is.na(tmp.ge.25.le.75.27[,samp]),samp] <- FALSE
+    tmp.lt.25.27[is.na(tmp.lt.25.27[,samp]),samp] <- FALSE
+        tmp.gt.75.27[is.na(tmp.gt.75.27[,samp]),samp] <- FALSE
+        tmp.ge.25.le.75.27[is.na(tmp.ge.25.le.75.27[,samp]),samp] <- FALSE
 
 
-	patient.call.27k[tmp.lt.25.27[,samp],samp] <- as.character(rules.all.27[tmp.lt.25.27[,samp],"Call.TM.LT.0.25"])
-	patient.call.27k[tmp.gt.75.27[,samp],samp] <- as.character(rules.all.27[tmp.gt.75.27[,samp],"Call.TM.GT.0.75"])
-	patient.call.27k[tmp.ge.25.le.75.27[,samp],samp] <- as.character(rules.all.27[tmp.ge.25.le.75.27[,samp],"Call.0.25.GE.TM.LE.0.75"])
+        patient.call.27k[tmp.lt.25.27[,samp],samp] <- as.character(rules.all.27[tmp.lt.25.27[,samp],"Call.TM.LT.0.25"])
+        patient.call.27k[tmp.gt.75.27[,samp],samp] <- as.character(rules.all.27[tmp.gt.75.27[,samp],"Call.TM.GT.0.75"])
+        patient.call.27k[tmp.ge.25.le.75.27[,samp],samp] <- as.character(rules.all.27[tmp.ge.25.le.75.27[,samp],"Call.0.25.GE.TM.LE.0.75"])
 
-	patient.score.27k[tmp.lt.25.27[,samp],samp] <- as.character(rules.all.27[tmp.lt.25.27[,samp],"Confidence.Score.TM.LT.0.25"])
-	patient.score.27k[tmp.gt.75.27[,samp],samp] <- as.character(rules.all.27[tmp.gt.75.27[,samp],"Confidence.Score.TM.GT.0.75"])
-	patient.score.27k[tmp.ge.25.le.75.27[,samp],samp] <- as.character(rules.all.27[tmp.ge.25.le.75.27[,samp],"Confidence.Score.0.25.GE.TM.LE.0.75"])
+        patient.score.27k[tmp.lt.25.27[,samp],samp] <- as.character(rules.all.27[tmp.lt.25.27[,samp],"Confidence.Score.TM.LT.0.25"])
+        patient.score.27k[tmp.gt.75.27[,samp],samp] <- as.character(rules.all.27[tmp.gt.75.27[,samp],"Confidence.Score.TM.GT.0.75"])
+        patient.score.27k[tmp.ge.25.le.75.27[,samp],samp] <- as.character(rules.all.27[tmp.ge.25.le.75.27[,samp],"Confidence.Score.0.25.GE.TM.LE.0.75"])
 
-	## make each column a factor for easy summary and plot
-	patient.call.27k[,samp] <- as.factor(patient.call.27k[,samp])
-	patient.score.27k[,samp] <- as.factor(patient.score.27k[,samp])
-	cat(date(), " :: Finished Sample : ",samp,"out of ", dim(patient.call.27k)[2],"\n")
+## make each column a factor for easy summary and plot
+        patient.call.27k[,samp] <- as.factor(patient.call.27k[,samp])
+        patient.score.27k[,samp] <- as.factor(patient.score.27k[,samp])
+        cat(date(), " :: Finished Sample : ",samp,"out of ", dim(patient.call.27k)[2],"\n")
 
 }
 
@@ -85,23 +85,23 @@ tmp.ge.25.le.75.450 <- tmp.450 == 2
 for(samp in 1:dim(patient.call.450k)[2]){
 
 ## convert NAs to FALSE
-	tmp.lt.25.450[is.na(tmp.lt.25.450[,samp]),samp] <- FALSE
-	tmp.gt.75.450[is.na(tmp.gt.75.450[,samp]),samp] <- FALSE
-	tmp.ge.25.le.75.450[is.na(tmp.ge.25.le.75.450[,samp]),samp] <- FALSE
+    tmp.lt.25.450[is.na(tmp.lt.25.450[,samp]),samp] <- FALSE
+        tmp.gt.75.450[is.na(tmp.gt.75.450[,samp]),samp] <- FALSE
+        tmp.ge.25.le.75.450[is.na(tmp.ge.25.le.75.450[,samp]),samp] <- FALSE
 
 
-	patient.call.450k[tmp.lt.25.450[,samp],samp] <- as.character(rules.all.450[tmp.lt.25.450[,samp],"Call.TM.LT.0.25"])
-	patient.call.450k[tmp.gt.75.450[,samp],samp] <- as.character(rules.all.450[tmp.gt.75.450[,samp],"Call.TM.GT.0.75"])
-	patient.call.450k[tmp.ge.25.le.75.450[,samp],samp] <- as.character(rules.all.450[tmp.ge.25.le.75.450[,samp],"Call.0.25.GE.TM.LE.0.75"])
+        patient.call.450k[tmp.lt.25.450[,samp],samp] <- as.character(rules.all.450[tmp.lt.25.450[,samp],"Call.TM.LT.0.25"])
+        patient.call.450k[tmp.gt.75.450[,samp],samp] <- as.character(rules.all.450[tmp.gt.75.450[,samp],"Call.TM.GT.0.75"])
+        patient.call.450k[tmp.ge.25.le.75.450[,samp],samp] <- as.character(rules.all.450[tmp.ge.25.le.75.450[,samp],"Call.0.25.GE.TM.LE.0.75"])
 
-	patient.score.450k[tmp.lt.25.450[,samp],samp] <- as.character(rules.all.450[tmp.lt.25.450[,samp],"Confidence.Score.TM.LT.0.25"])
-	patient.score.450k[tmp.gt.75.450[,samp],samp] <- as.character(rules.all.450[tmp.gt.75.450[,samp],"Confidence.Score.TM.GT.0.75"])
-	patient.score.450k[tmp.ge.25.le.75.450[,samp],samp] <- as.character(rules.all.450[tmp.ge.25.le.75.450[,samp],"Confidence.Score.0.25.GE.TM.LE.0.75"])
+        patient.score.450k[tmp.lt.25.450[,samp],samp] <- as.character(rules.all.450[tmp.lt.25.450[,samp],"Confidence.Score.TM.LT.0.25"])
+        patient.score.450k[tmp.gt.75.450[,samp],samp] <- as.character(rules.all.450[tmp.gt.75.450[,samp],"Confidence.Score.TM.GT.0.75"])
+        patient.score.450k[tmp.ge.25.le.75.450[,samp],samp] <- as.character(rules.all.450[tmp.ge.25.le.75.450[,samp],"Confidence.Score.0.25.GE.TM.LE.0.75"])
 
-	## make each column a factor for easy summary and plot
-	patient.call.450k[,samp] <- as.factor(patient.call.450k[,samp])
-	patient.score.450k[,samp] <- as.factor(patient.score.450k[,samp])
-	cat(date(), " :: Finished Sample : ",samp,"out of ", dim(patient.call.450k)[2],"\n")
+## make each column a factor for easy summary and plot
+        patient.call.450k[,samp] <- as.factor(patient.call.450k[,samp])
+        patient.score.450k[,samp] <- as.factor(patient.score.450k[,samp])
+        cat(date(), " :: Finished Sample : ",samp,"out of ", dim(patient.call.450k)[2],"\n")
 }
 
 save(patient.call.27k, patient.score.27k, genenames, patient.call.450k, patient.score.450k, genenames.450, file = "Patient_Centric_Calls_Scores.rda")

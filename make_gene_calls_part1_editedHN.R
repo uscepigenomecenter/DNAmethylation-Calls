@@ -11,19 +11,19 @@
 load(file="CpGProbes_collapsed_to_one_gene.rd")
 genenames$correlation_call <- c("UNK")
 for(i in 1:dim(genenames)[1]){
-	if(genenames[i,"corvalue_round"] < c(-0.4)){
+    if(genenames[i,"corvalue_round"] < c(-0.4)){
 
-	genenames[i,"correlation_call"]<-c("SNC")
-} else {
-if(genenames[i,"corvalue_round"] >= c(-0.4) && genenames[i,"corvalue_round"] <= c(-0.2) ){
-	
-	genenames[i,"correlation_call"]<-c("WNC")
-} else {
-genenames[i,"correlation_call"]<-c("NNC")
-}
+        genenames[i,"correlation_call"]<-c("SNC")
+    } else {
+        if(genenames[i,"corvalue_round"] >= c(-0.4) && genenames[i,"corvalue_round"] <= c(-0.2) ){
+
+            genenames[i,"correlation_call"]<-c("WNC")
+        } else {
+            genenames[i,"correlation_call"]<-c("NNC")
+        }
 
 
-}
+    }
 }
 
 genenames[,"correlation_call"] <- as.factor(genenames[,"correlation_call"])
@@ -59,36 +59,36 @@ genenames$T.METH <- c("UNK")
 
 
 for(n in 1:dim(genenames)[1]){
-if(is.na(genenames[n, "N10"] < 0.25 && genenames[n, "N50"] < 0.25 && genenames[n, "N90"] < 0.25)){
-	genenames[n, "N.METH"] <- c("UNK")
-} else{
+    if(is.na(genenames[n, "N10"] < 0.25 && genenames[n, "N50"] < 0.25 && genenames[n, "N90"] < 0.25)){
+        genenames[n, "N.METH"] <- c("UNK")
+    } else{
 
-	if(genenames[n, "N90"] < 0.25){
+        if(genenames[n, "N90"] < 0.25){
 
-	genenames[n, "N.METH"] <- c("CUN")
-
-
-} else {
-	if(genenames[n, "N10"] > 0.75){
-
-	genenames[n, "N.METH"] <- c("CMN")
-
-} else {
-
-if(genenames[n, "N10"] > 0.25 && genenames[n, "N90"] < 0.75){
-	
-	genenames[n, "N.METH"] <- c("IMN")
-} else {
-genenames[n, "N.METH"] <- c("VMN")
-
-}
+            genenames[n, "N.METH"] <- c("CUN")
 
 
-}
+        } else {
+            if(genenames[n, "N10"] > 0.75){
+
+                genenames[n, "N.METH"] <- c("CMN")
+
+            } else {
+
+                if(genenames[n, "N10"] > 0.25 && genenames[n, "N90"] < 0.75){
+
+                    genenames[n, "N.METH"] <- c("IMN")
+                } else {
+                    genenames[n, "N.METH"] <- c("VMN")
+
+                }
 
 
-}
-}
+            }
+
+
+        }
+    }
 }#endfor
 
 genenames[,"N.METH"] <- as.factor(genenames[,"N.METH"])
@@ -97,36 +97,36 @@ genenames[,"N.METH"] <- as.factor(genenames[,"N.METH"])
 
 ## for tumors
 for(n in 1:dim(genenames)[1]){
-if(is.na(genenames[n, "T10"] < 0.25 && genenames[n, "T50"] < 0.25 && genenames[n, "T90"] < 0.25)){
-	genenames[n, "T.METH"] <- c("UNK")
-} else{
+    if(is.na(genenames[n, "T10"] < 0.25 && genenames[n, "T50"] < 0.25 && genenames[n, "T90"] < 0.25)){
+        genenames[n, "T.METH"] <- c("UNK")
+    } else{
 
-	if(genenames[n, "T90"] < 0.25){
+        if(genenames[n, "T90"] < 0.25){
 
-	genenames[n, "T.METH"] <- c("CUT")
-
-
-} else {
-	if(genenames[n, "T10"] > 0.75){
-
-	genenames[n, "T.METH"] <- c("CMT")
-
-} else {
-
-if(genenames[n, "T10"] > 0.25 && genenames[n, "T90"] < 0.75){
-	
-	genenames[n, "T.METH"] <- c("IMT")
-} else {
-genenames[n, "T.METH"] <- c("VMT")
-
-}
+            genenames[n, "T.METH"] <- c("CUT")
 
 
-}
+        } else {
+            if(genenames[n, "T10"] > 0.75){
+
+                genenames[n, "T.METH"] <- c("CMT")
+
+            } else {
+
+                if(genenames[n, "T10"] > 0.25 && genenames[n, "T90"] < 0.75){
+
+                    genenames[n, "T.METH"] <- c("IMT")
+                } else {
+                    genenames[n, "T.METH"] <- c("VMT")
+
+                }
 
 
-}
-}
+            }
+
+
+        }
+    }
 }#endfor
 
 genenames[,"T.METH"] <- as.factor(genenames[,"T.METH"])
@@ -136,7 +136,7 @@ genenames[,"T.METH"] <- as.factor(genenames[,"T.METH"])
 table(genenames[,"N.METH"],genenames[,"T.METH"], genenames[,"correlation_call"])
 table(genenames[,"T.METH"],genenames[,"correlation_call"])
 table(genenames[,"N.METH"],genenames[,"correlation_call"])
- table(genenames[,"N.METH"],genenames[,"T.METH"])
+table(genenames[,"N.METH"],genenames[,"T.METH"])
 
 
 
@@ -151,19 +151,19 @@ table(genenames[,"N.METH"],genenames[,"correlation_call"])
 load(file="CpGProbes_collapsed_to_one_gene_450.rd")
 genenames.450$correlation_call <- c("UNK")
 for(i in 1:dim(genenames.450)[1]){
-	if(genenames.450[i,"corvalue_round"] < c(-0.4)){
+    if(genenames.450[i,"corvalue_round"] < c(-0.4)){
 
-	genenames.450[i,"correlation_call"]<-c("SNC")
-} else {
-if(genenames.450[i,"corvalue_round"] >= c(-0.4) && genenames.450[i,"corvalue_round"] <= c(-0.2) ){
-	
-	genenames.450[i,"correlation_call"]<-c("WNC")
-} else {
-genenames.450[i,"correlation_call"]<-c("NNC")
-}
+        genenames.450[i,"correlation_call"]<-c("SNC")
+    } else {
+        if(genenames.450[i,"corvalue_round"] >= c(-0.4) && genenames.450[i,"corvalue_round"] <= c(-0.2) ){
+
+            genenames.450[i,"correlation_call"]<-c("WNC")
+        } else {
+            genenames.450[i,"correlation_call"]<-c("NNC")
+        }
 
 
-}
+    }
 }
 
 genenames.450[,"correlation_call"] <- as.factor(genenames.450[,"correlation_call"])
@@ -220,36 +220,36 @@ genenames.450$T.METH <- c("UNK")
 
 
 for(n in 1:dim(genenames.450)[1]){
-if(is.na(genenames.450[n, "N10"] < 0.25 && genenames.450[n, "N50"] < 0.25 && genenames.450[n, "N90"] < 0.25)){
-	genenames.450[n, "N.METH"] <- c("UNK")
-} else{
+    if(is.na(genenames.450[n, "N10"] < 0.25 && genenames.450[n, "N50"] < 0.25 && genenames.450[n, "N90"] < 0.25)){
+        genenames.450[n, "N.METH"] <- c("UNK")
+    } else{
 
-	if(genenames.450[n, "N90"] < 0.25){
+        if(genenames.450[n, "N90"] < 0.25){
 
-	genenames.450[n, "N.METH"] <- c("CUN")
-
-
-} else {
-	if(genenames.450[n, "N10"] > 0.75){
-
-	genenames.450[n, "N.METH"] <- c("CMN")
-
-} else {
-
-if(genenames.450[n, "N10"] > 0.25 && genenames.450[n, "N90"] < 0.75){
-	
-	genenames.450[n, "N.METH"] <- c("IMN")
-} else {
-genenames.450[n, "N.METH"] <- c("VMN")
-
-}
+            genenames.450[n, "N.METH"] <- c("CUN")
 
 
-}
+        } else {
+            if(genenames.450[n, "N10"] > 0.75){
+
+                genenames.450[n, "N.METH"] <- c("CMN")
+
+            } else {
+
+                if(genenames.450[n, "N10"] > 0.25 && genenames.450[n, "N90"] < 0.75){
+
+                    genenames.450[n, "N.METH"] <- c("IMN")
+                } else {
+                    genenames.450[n, "N.METH"] <- c("VMN")
+
+                }
 
 
-}
-}
+            }
+
+
+        }
+    }
 }#endfor
 
 genenames.450[,"N.METH"] <- as.factor(genenames.450[,"N.METH"])
@@ -258,36 +258,36 @@ genenames.450[,"N.METH"] <- as.factor(genenames.450[,"N.METH"])
 
 ## for tumors
 for(n in 1:dim(genenames.450)[1]){
-if(is.na(genenames.450[n, "T10"] < 0.25 && genenames.450[n, "T50"] < 0.25 && genenames.450[n, "T90"] < 0.25)){
-	genenames.450[n, "T.METH"] <- c("UNK")
-} else{
+    if(is.na(genenames.450[n, "T10"] < 0.25 && genenames.450[n, "T50"] < 0.25 && genenames.450[n, "T90"] < 0.25)){
+        genenames.450[n, "T.METH"] <- c("UNK")
+    } else{
 
-	if(genenames.450[n, "T90"] < 0.25){
+        if(genenames.450[n, "T90"] < 0.25){
 
-	genenames.450[n, "T.METH"] <- c("CUT")
-
-
-} else {
-	if(genenames.450[n, "T10"] > 0.75){
-
-	genenames.450[n, "T.METH"] <- c("CMT")
-
-} else {
-
-if(genenames.450[n, "T10"] > 0.25 && genenames.450[n, "T90"] < 0.75){
-	
-	genenames.450[n, "T.METH"] <- c("IMT")
-} else {
-genenames.450[n, "T.METH"] <- c("VMT")
-
-}
+            genenames.450[n, "T.METH"] <- c("CUT")
 
 
-}
+        } else {
+            if(genenames.450[n, "T10"] > 0.75){
+
+                genenames.450[n, "T.METH"] <- c("CMT")
+
+            } else {
+
+                if(genenames.450[n, "T10"] > 0.25 && genenames.450[n, "T90"] < 0.75){
+
+                    genenames.450[n, "T.METH"] <- c("IMT")
+                } else {
+                    genenames.450[n, "T.METH"] <- c("VMT")
+
+                }
 
 
-}
-}
+            }
+
+
+        }
+    }
 }#endfor
 
 genenames.450[,"T.METH"] <- as.factor(genenames.450[,"T.METH"])
@@ -297,7 +297,7 @@ genenames.450[,"T.METH"] <- as.factor(genenames.450[,"T.METH"])
 table(genenames.450[,"N.METH"],genenames.450[,"T.METH"], genenames.450[,"correlation_call"])
 table(genenames.450[,"T.METH"],genenames.450[,"correlation_call"])
 table(genenames.450[,"N.METH"],genenames.450[,"correlation_call"])
- table(genenames.450[,"N.METH"],genenames.450[,"T.METH"])
+table(genenames.450[,"N.METH"],genenames.450[,"T.METH"])
 
 
 
@@ -338,7 +338,7 @@ dat <- rbind(t.27.m,t.450.m)
 
 
 m <- ggplot(dat, aes(x=value, colour=T.METH)) + facet_grid(T.METH ~ type)
- x11();m + geom_density()
+x11();m + geom_density()
 
 
 ## Author: Houtan Noushmehr, PhD
